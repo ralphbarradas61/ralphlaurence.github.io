@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Everyone can read the counts; each visitor can only change their own entry.
+    match /views/{uid}    { allow read: if true; allow write: if request.auth != null && request.auth.uid == uid; }
+    match /votes/{uid}    { allow read: if true; allow write: if request.auth != null && request.auth.uid == uid; }
+    match /ratings/{uid}  { allow read: if true; allow write: if request.auth != null && request.auth.uid == uid; }
+    match /comments/{uid} { allow read: if true; allow write: if request.auth != null && request.auth.uid == uid
+                                           && (request.resource == null || request.resource.data.text.size() <= 500); }
+    match /visits/{uid}   { allow read: if false; allow write: if request.auth != null && request.auth.uid == uid; }
+  }
+}
