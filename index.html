@@ -432,20 +432,12 @@ html,body{overflow-x:hidden}
 <script>
 /* ===== FIREBASE SETTINGS — paste your config here (see README.md) ===== */
 const FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  appId: ""
-};
-/* ====================================================================== */
-(function(){
-  if(window.claude) return;
-  let ready=null;
-  const load=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
-  const init=async()=>{
-    if(!FIREBASE_CONFIG.projectId) return null;
-    const v="10.12.2",b="https://www.gstatic.com/firebasejs/"+v+"/";
-    await load(b+"firebase-app-compat.js");await load(b+"firebase-auth-compat.js");await load(b+"firebase-firestore-compat.js");
+    apiKey: "AIzaSyACySK4H4YddR3xRHcF6MJR-ycgzHpJp0Q",
+  authDomain: "ralph-portfolio-4e5d5.firebaseapp.com",
+  projectId: "ralph-portfolio-4e5d5",
+  storageBucket: "ralph-portfolio-4e5d5.firebasestorage.app",
+  messagingSenderId: "533977967545",
+  appId: "1:533977967545:web:0188ef9bcc67609974a468"
     firebase.initializeApp(FIREBASE_CONFIG);
     const cred=await firebase.auth().signInAnonymously();
     return {fs:firebase.firestore(),uid:cred.user.uid};
